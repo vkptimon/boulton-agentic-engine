@@ -20,29 +20,41 @@ This skill is for **execution**.
 If the user only asked a question or requested a plan, do **not** use this skill.
 When in doubt, step back to **ask** or **plan**.
 
+## Learning-first (non-trivial changes)
+Before writing any files:
+1. Read the relevant existing code and explain what it currently does.
+2. State at least two implementation approaches and the tradeoff between them.
+3. Say which approach you are taking and why.
+4. Wait for the user to confirm before writing anything.
+
+Do not skip straight to code. Understanding is the goal.
+
 ## Procedure
-1. Confirm the request requires implementation.
+1. Confirm implementation is explicitly requested.
 2. Gather the relevant context before editing.
 3. Break the work into clear steps.
 4. Make the smallest viable set of changes.
 5. Preserve readability and existing conventions.
 6. Validate with relevant checks when practical.
-7. Summarize exactly what changed and how it was verified.
 
 ## Quality bar
-- Prefer simple, maintainable code.
 - Keep diffs tight and purposeful.
 - Do not introduce speculative abstractions.
 - Keep business logic isolated from transport/UI glue.
-- Respect project constraints from the repo docs.
+- Backend: thin FastAPI handlers, pure functions for parsing/scoring.
+- Frontend: focused typed Vue components, explicit async/error states.
+- Resume domain: preserve user voice, no fabricated metrics, only touch allowed sections.
 
-## Repo-specific reminders
-- Backend: keep FastAPI route handlers thin.
-- Frontend: keep Vue components focused and typed.
-- Resume suggestions: preserve user voice, avoid fabricated metrics, and limit edits to allowed resume sections unless the user expands scope.
+## Required output after every implementation
 
-## Avoid
-- Starting implementation without enough context
-- Making broad rewrites for a small request
-- Skipping validation when a quick check is available
-- Continuing to code after the user asked only for explanation
+### What changed
+One sentence.
+
+### Why this design
+The structural reasoning — not just "it works". What constraint, tradeoff, or architectural principle drove the choice.
+
+### Learning
+The system design principle, programming paradigm, language feature, or theoretical concept this embodies. Name it explicitly (e.g. *separation of concerns*, *pure function*, *optimistic UI*, *idempotency*, *single responsibility*, *layered architecture*).
+
+### Broader applicability
+One other context where this same concept applies.
